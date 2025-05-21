@@ -14,7 +14,7 @@ function Update() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:4000/events/${id}`)
+            .get(`https://event-management-3-0myn.onrender.com/${id}`)
             .then(response => {
                 setUpdatedTitle(response.data.title || '');
                 setUpdatedDescription(response.data.description || '');

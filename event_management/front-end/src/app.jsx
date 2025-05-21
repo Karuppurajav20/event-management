@@ -15,7 +15,7 @@ function App() {
     });
 
     const fetchEvents = () => {
-        axios.get('http://localhost:4000/events')
+        axios.get(`${process.env.REACT_APP_API_URL}/api/events`)
             .then(res => setEvents(res.data))
             .catch(err => console.error('Fetch error:', err));
     };

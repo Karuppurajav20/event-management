@@ -8,8 +8,7 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:4000/events')
+   axios.get(`${process.env.REACT_APP_API_URL}/api/events`)
       .then(response => {
         setEvents(response.data);
       })
