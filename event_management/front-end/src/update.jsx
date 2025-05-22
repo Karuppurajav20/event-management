@@ -13,8 +13,7 @@ function Update() {
     const [updatedDate, setUpdatedDate] = useState('');
 
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}${id}`)
+       axios.get(`${process.env.REACT_APP_API_URL}/events/${id}`)
             .then(response => {
                 setUpdatedTitle(response.data.title || '');
                 setUpdatedDescription(response.data.description || '');
@@ -38,8 +37,7 @@ function Update() {
             date: updatedDate
         };
 
-        axios
-            .put(`http://localhost:4000/events/${id}`, updatedEvent)
+       axios.put(`${process.env.REACT_APP_API_URL}/events/${id}`, updatedEvent)
             .then(() => {
                 alert('Event updated successfully!');
                 
