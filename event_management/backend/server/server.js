@@ -28,8 +28,7 @@ mongoose
         process.exit(1); 
     });
 
-
-app.use('/events', eventRouter);
+app.use('/events', eventRoutes);
 
 
 app.listen(port, () => {

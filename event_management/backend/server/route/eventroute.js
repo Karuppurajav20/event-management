@@ -1,6 +1,7 @@
 const express = require('express');
 const eventController = require('../controler/eventcon');
 
+
 const router = express.Router();
 
 router.get('/', eventController.getAllEvents);
