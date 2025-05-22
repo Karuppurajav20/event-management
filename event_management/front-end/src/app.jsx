@@ -15,7 +15,7 @@ function App() {
     });
 
     const fetchEvents = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/events`)
+        axios.get(`${process.env.REACT_APP_API_URL}`)
             .then(res => setEvents(res.data))
             .catch(err => console.error('Fetch error:', err));
     };

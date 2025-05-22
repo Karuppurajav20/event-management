@@ -14,7 +14,7 @@ function Update() {
 
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_URL}/api/events/${id}`)
+            .get(`${process.env.REACT_APP_API_URL}${id}`)
             .then(response => {
                 setUpdatedTitle(response.data.title || '');
                 setUpdatedDescription(response.data.description || '');
