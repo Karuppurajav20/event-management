@@ -36,7 +36,7 @@ function Update() {
             date: updatedDate
         };
 
-        axios.put(`${process.env.REACT_APP_API_URL}/api/events/${id}`, updatedEvent)
+       axios.put(`${process.env.REACT_APP_API_URL}/api/events/${id}`, updatedEvent)
             .then(() => {
                 alert('Event updated successfully!');
             })

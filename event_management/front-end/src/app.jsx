@@ -18,7 +18,7 @@ function App() {
     const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 
     const fetchEvents = () => {
-        axios.get(`${API_BASE_URL}/events`)
+         axios.get(`${API_BASE_URL}/api/events`)
             .then(res => setEvents(res.data))
             .catch(err => console.error('Fetch error:', err));
     };
@@ -33,7 +33,7 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`${API_BASE_URL}/events`, formData)
+        axios.post(`${API_BASE_URL}/api/events`, newEvent)     
             .then(() => {
                 setShowModal(false);
                 setFormData({ title: '', description: '', location: '', date: '' });
