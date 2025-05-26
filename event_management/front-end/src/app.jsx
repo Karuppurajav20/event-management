@@ -14,8 +14,11 @@ function App() {
         date: ''
     });
 
+    // ✅ Use env variable consistently
+    const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+
     const fetchEvents = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}`)
+        axios.get(`${API_BASE_URL}/events`)
             .then(res => setEvents(res.data))
             .catch(err => console.error('Fetch error:', err));
     };
@@ -30,7 +33,7 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4000/events', formData)
+        axios.post(`${API_BASE_URL}/events`, formData)
             .then(() => {
                 setShowModal(false);
                 setFormData({ title: '', description: '', location: '', date: '' });
@@ -43,7 +46,7 @@ function App() {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:4000/events/${id}`)
+        axios.delete(`${API_BASE_URL}/events/${id}`)
             .then(() => fetchEvents())
             .catch(err => console.error('Delete error:', err));
     };
@@ -148,12 +151,11 @@ function App() {
                             />
                         </div>
                         <button type="submit" className="btn btn-primary">
-                            Add Event   
+                            Add Event
                         </button>
                         <button type="button" className="btn btn-secondary ms-2" onClick={() => setShowModal(false)}>
-                            Close   
+                            Close
                         </button>
-                        
                     </form>
                 </Modal.Body>
             </Modal>

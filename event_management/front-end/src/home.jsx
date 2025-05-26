@@ -1,20 +1,23 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import './home.css'; 
+import './home.css';
 
 const Home = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
 
+  // Optional: fallback to localhost if env not defined
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
   useEffect(() => {
-   axios.get(`${process.env.REACT_APP_API_URL}`)
+    axios.get(`${API_BASE_URL}/api/events`)
       .then(response => {
         setEvents(response.data);
       })
       .catch(error => {
-        console.error('Error fetching events:', error);
-        setError('Failed to fetch events. Please try again later.');
+        console.error("Error fetching events:", error);
+        setError("Failed to fetch events. Please try again later.");
       });
   }, []);
 
@@ -40,12 +43,11 @@ const Home = () => {
             </div>
           ) : (
             events.map(event => {
-              // Handle missing or invalid date
               let day = '', month = '', year = '';
               if (event.date) {
                 const date = new Date(event.date);
                 day = date.getDate();
-                month = date.toLocaleString('default', { month: 'short' });
+                month = date.toLocaleString("default", { month: "short" });
                 year = date.getFullYear();
               }
               return (
@@ -59,12 +61,8 @@ const Home = () => {
                             <span className="widget-49-date-month">{month}</span>
                           </div>
                           <div className="widget-49-meeting-info">
-                            <span className="widget-49-pro-title">
-                              <b>{event.title}</b>
-                            </span>
-                            <span className="widget-49-pro-title">
-                              <b>{event.location}</b>
-                            </span>
+                            <span className="widget-49-pro-title"><b>{event.title}</b></span>
+                            <span className="widget-49-pro-title"><b>{event.location}</b></span>
                           </div>
                         </div>
                         <div className="widget-49-meeting-points">

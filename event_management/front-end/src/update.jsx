@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Link, useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Update() {
     const { id } = useParams();
-   
 
     const [isLoading, setIsLoading] = useState(true);
     const [updatedTitle, setUpdatedTitle] = useState('');
@@ -13,7 +12,7 @@ function Update() {
     const [updatedDate, setUpdatedDate] = useState('');
 
     useEffect(() => {
-       axios.get(`${process.env.REACT_APP_API_URL}/events/${id}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/events/${id}`)
             .then(response => {
                 setUpdatedTitle(response.data.title || '');
                 setUpdatedDescription(response.data.description || '');
@@ -37,10 +36,9 @@ function Update() {
             date: updatedDate
         };
 
-       axios.put(`${process.env.REACT_APP_API_URL}/events/${id}`, updatedEvent)
+        axios.put(`${process.env.REACT_APP_API_URL}/api/events/${id}`, updatedEvent)
             .then(() => {
                 alert('Event updated successfully!');
-                
             })
             .catch(error => {
                 alert('Error updating event: ' + error);
