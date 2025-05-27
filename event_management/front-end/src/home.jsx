@@ -7,7 +7,7 @@ const Home = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
 
-  // Optional: fallback to localhost if env not defined
+ 
   const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
   useEffect(() => {

@@ -14,7 +14,7 @@ function App() {
         date: ''
     });
 
-    // ✅ Use env variable consistently
+    
     const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 
     const fetchEvents = () => {
@@ -46,7 +46,7 @@ function App() {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`${API_BASE_URL}/events/${id}`)
+        axios.delete(`${API_BASE_URL}/api/events/${id}`)
             .then(() => fetchEvents())
             .catch(err => console.error('Delete error:', err));
     };
@@ -99,7 +99,7 @@ function App() {
                 </table>
             </div>
 
-            {/* Modal */}
+            
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Event</Modal.Title>
